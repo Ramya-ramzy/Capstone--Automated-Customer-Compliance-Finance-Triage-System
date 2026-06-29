@@ -1,0 +1,36 @@
+[project]
+name = "automated-compliance-triage"
+version = "0.1.0"
+description = "Automated Customer Compliance & Finance Triage System using ADK 2.0"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "google-genai>=0.1.1",
+    "google-adk>=2.0.0",
+    "pytest>=8.0.0",
+]
+
+[dependency-groups]
+dev = [
+    "pre-commit>=3.6.0",
+    "flake8>=7.0.0",
+    "semgrep>=1.60.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+[tool.semgrep]
+# Shift Security Left configurations
+patterns = [
+    "pattern: | ...",
+    "severity: ERROR"
+]
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = "E203, W503"
+exclude = ".git,__pycache__,docs/source/conf.py,old,build,dist"
